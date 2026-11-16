@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Asteroid Field</title>
+  <meta name="description" content="A 3D arcade space shooter: break the belt, survive the core.">
+  <meta name="theme-color" content="#030308">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" type="image/png" sizes="48x48" href="./icons/favicon-48.png">
+  <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
+</head>
+<body>
+  <canvas id="game" aria-label="Asteroid Field game view"></canvas>
+
+  <div id="popups" class="popups" aria-hidden="true"></div>
+
+  <div class="hud hud-left">
+    <div class="hud-label">SCORE</div>
+    <div class="hud-score" id="score">0</div>
+    <div class="hud-combo" id="combo"><span id="comboMult">×1</span><span id="comboCount"></span><i><b id="comboBar"></b></i></div>
+    <div class="hud-lives" id="lives" aria-label="Ships remaining"></div>
+  </div>
+
+  <div class="hud hud-right">
+    <div class="hud-label">SECTOR <span id="level">1</span></div>
+    <div class="hud-sector" id="sectorName">ROCKY BELT</div>
+    <div class="hud-wave" id="wave">WAVE 1 / 3</div>
+  </div>
+
+  <div class="boss-bar" id="bossBar">
+    <div class="boss-name" id="bossName">HIVE CORE</div>
+    <div class="boss-track"><i id="bossFill"></i></div>
+  </div>
+
+  <div class="status" id="status">
+    <div class="meter meter-heat" id="heatMeter"><span>HEAT</span><div class="track"><i id="heatFill"></i></div></div>
+    <div class="meter meter-shield" id="shieldMeter"><span>SHIELD</span><div class="track"><i id="shieldFill"></i></div></div>
+    <div class="meter meter-jump" id="jumpMeter"><span>JUMP</span><div class="track"><i id="jumpFill"></i></div></div>
+    <div class="buffs" id="buffs"></div>
+  </div>
+
+  <div class="toast" id="toast" aria-live="polite"></div>
+
+  <div class="controls" id="controls">
+    <span><b>← →</b> / <b>A D</b> turn</span>
+    <span><b>↑</b> / <b>W</b> thrust</span>
+    <span><b>SPACE</b> fire</span>
+    <span><b>P</b> / <b>ESC</b> pause</span>
+  </div>
+
+  <div id="gameOver" class="panel panel-danger">
+    <div class="panel-kicker">RUN COMPLETE</div>
+    <div class="panel-title" id="gameOverText">GAME OVER</div>
+    <div class="run-stats" id="runStats"></div>
+    <div class="panel-actions">
+      <button class="panel-btn" data-action="retry"><kbd>R</kbd> Retry</button>
+      <button class="panel-btn" data-action="title"><kbd>Esc</kbd> Title</button>
+    </div>
+  </div>
+
+  <div id="levelUp" class="panel panel-sector">
+    <div class="panel-kicker" id="levelUpKicker">SECTOR 1</div>
+    <div class="panel-title" id="levelUpText"></div>
+    <div class="panel-sub" id="levelUpSubtitle"></div>
+    <ul class="threats" id="levelUpThreats"></ul>
+    <div class="sector-boss" id="levelUpBoss"></div>
+  </div>
+
+  <div id="upgrade" class="panel panel-upgrade">
+    <div class="panel-kicker">SECTOR CLEARED</div>
+    <div class="panel-title">CHOOSE AN UPGRADE</div>
+    <div class="cards" id="cards"></div>
+    <div class="panel-hint">1 · 2 · 3, or ← → then Enter</div>
+  </div>
+
+  <div id="paused" class="panel panel-menu">
+    <div class="panel-kicker">HOLDING POSITION</div>
+    <div class="panel-title">PAUSED</div>
+    <ul class="menu" id="menu" role="menu"></ul>
+    <div class="panel-hint">↑ ↓ select · ← → change · Enter choose · Esc resume</div>
+  </div>
+
+  <div id="coach" class="coach" aria-live="polite"></div>
+
+  <div id="title" class="title-screen">
+    <div class="title-inner">
+      <div class="title-logo" id="titleLogo"></div>
+      <div class="title-tagline" id="titleTagline"></div>
+      <div class="title-body">
+        <ul class="menu title-menu" id="titleMenu" role="menu"></ul>
+        <div class="title-view" id="titleScores" hidden></div>
+        <div class="title-view" id="titleHowto" hidden></div>
+        <div class="title-view title-settings" id="titleSettings" hidden>
+          <div class="panel-kicker">SETTINGS</div>
+          <ul class="menu" id="titleSettingsMenu" role="menu"></ul>
+        </div>
+      </div>
+      <div class="panel-hint" id="titleHint"></div>
+    </div>
+  </div>
+
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>
