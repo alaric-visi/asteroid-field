@@ -1,6 +1,6 @@
 // First-run tutorial: contextual prompts during the opening wave of the
 // campaign. Each step completes when the player actually does the thing.
-// The ship is indestructible (game.options.training) until it finishes.
+// When `training` is true, the ship is indestructible until it finishes.
 // Prompts show controls for the device the player is using.
 import { keyName } from './menu.js';
 
@@ -59,14 +59,14 @@ export function createTutorial({ root, getDevice, getBindings, onFinish, sfx }) 
 
   return {
     get active() { return active; },
-    start(g) {
+    start(g, { training = true } = {}) {
       game = g;
       active = true;
       index = 0;
       celebrate = 0;
       t = { turned: 0, thrust: 0, shots: 0, shield: 0, jumps: 0, stepTime: 0 };
       lastAngle = g.ship.angle;
-      game.options.training = true;
+      game.options.training = training;
       rendered = '';
       root.classList.add('visible');
       render();

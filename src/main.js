@@ -154,7 +154,7 @@ function startGame(mode, { tutorial: withTutorial = false } = {}) {
   game.options.training = false;
   sfx.uiSelect();
   music.start();
-  if (withTutorial || (mode === 'campaign' && !settings.get().tutorialDone)) tutorial.start(game);
+  if (withTutorial || (mode === 'campaign' && !settings.get().tutorialDone)) tutorial.start(game, { training: withTutorial });
   else tutorial.stop();
 }
 
