@@ -1,5 +1,7 @@
 # Asteroid Field
 
+**▶ [Play Asteroid Field Online](https://archive.mikehiggins.me.uk/notes/games-26/asteroid-field/)**
+
 A 3D WebGL arcade space shooter built with **Three.js**, **postprocessing**, and **Web Audio** — engineered around a deterministic, zero-DOM fixed-timestep simulation, instanced GPU rendering, and procedural audio synthesis.
 
 > **Note:** `legacy/asteroids-original.html` contains the original single-file prototype kept as a behavior reference; `src/` is the modular rebuild.
